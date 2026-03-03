@@ -606,7 +606,7 @@ function renderGrid(hall,room,dir){
         const cls=isBu?(isMi?'mi-b':'bun-b'):(isMi?'mi-i':'bun-i');
         const cellCls=isBu?'cell-b':'cell';
         h+=`<div class="${cellCls} ${cls}" style="width:${w}px;height:${sz}px"
-          onmouseenter="showT(event,'${ek}')" onmouseleave="hideT()">
+          onmouseenter="showT(event,'${ek}')" onmouseleave="hideT()" ontouchstart="showT(event,'${ek}');event.stopPropagation()" ontouchend="event.stopPropagation()">
           <span class="cell-ico">${isMi?(isBu?'○○':'○'):(isBu?'●●':'●')}</span>
           ${sz>=28?`<span class="cell-seq">${cell[0]}</span>`:''}
         </div>`;
@@ -703,13 +703,23 @@ function showT(e,key){
 }
 function mt(e){
   const tip=document.getElementById('tip');
-  let x=e.clientX+14,y=e.clientY+12;
-  if(x+275>window.innerWidth) x=e.clientX-279;
-  if(y+130>window.innerHeight) y=e.clientY-134;
+  const cx=e.clientX!==undefined?e.clientX:(e.touches&&e.touches[0]?e.touches[0].clientX:window.innerWidth/2);
+  const cy=e.clientY!==undefined?e.clientY:(e.touches&&e.touches[0]?e.touches[0].clientY:window.innerHeight/2);
+  const tw=tip.offsetWidth||270, th=tip.offsetHeight||140;
+  const margin=8;
+  let x=cx+14, y=cy+12;
+  if(x+tw+margin>window.innerWidth) x=cx-tw-14;
+  if(x<margin) x=margin;
+  if(y+th+margin>window.innerHeight) y=cy-th-12;
+  if(y<margin) y=margin;
   tip.style.left=x+'px';tip.style.top=y+'px';
 }
 document.addEventListener('mousemove',e=>{
   if(document.getElementById('tip').style.display==='block') mt(e);
+});
+document.addEventListener('touchstart',e=>{
+  const tip=document.getElementById('tip');
+  if(tip.style.display==='block' && !e.target.closest('[ontouchstart]')) hideT();
 });
 function hideT(){document.getElementById('tip').style.display='none';}
 
