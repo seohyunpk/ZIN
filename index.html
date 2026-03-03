@@ -543,7 +543,11 @@ function renderRoom(hall,room){
         <button onclick="backToSearch()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 검색 결과로</button>
       </div>`
     :'';
-  ga.innerHTML=backBtn+h;
+  const backToListBtn=`<div style="padding:8px 16px 0;display:flex;gap:8px;align-items:center">
+    <button onclick="backToList()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 실 목록</button>
+    ${fromSearch?`<button onclick="backToSearch()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 검색 결과</button>`:''}
+  </div>`;
+  ga.innerHTML=backToListBtn+h;
   if(document.getElementById('fshow').value==='mi') ga.classList.add('dim');
   else ga.classList.remove('dim');
 
@@ -851,8 +855,14 @@ function backToSearch(){
   fromSearch=false;
   document.getElementById('grid-area').style.display='none';
   document.getElementById('wizard').style.display='block';
-  // 결과 페이지(step3)로 바로 이동
   wzGo(3);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function backToList(){
+  curRoom=null;
+  document.querySelectorAll('.lv3-tab').forEach(t=>t.classList.remove('active'));
+  showEmpty('실을 선택하세요');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
