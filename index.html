@@ -537,16 +537,11 @@ function renderRoom(hall,room){
   });
 
   const ga=document.getElementById('grid-area');
-  // 검색결과에서 왔으면 돌아가기 버튼 추가
-  const backBtn=fromSearch
+  const backToListBtn=fromSearch
     ?`<div style="padding:8px 16px 0">
-        <button onclick="backToSearch()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 검색 결과로</button>
+        <button onclick="backToSearch()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 검색 결과</button>
       </div>`
     :'';
-  const backToListBtn=`<div style="padding:8px 16px 0;display:flex;gap:8px;align-items:center">
-    <button onclick="backToList()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 실 목록</button>
-    ${fromSearch?`<button onclick="backToSearch()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 검색 결과</button>`:''}
-  </div>`;
   ga.innerHTML=backToListBtn+h;
   if(document.getElementById('fshow').value==='mi') ga.classList.add('dim');
   else ga.classList.remove('dim');
