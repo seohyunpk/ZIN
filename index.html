@@ -63,26 +63,64 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
 .cinfo{font-size:.7rem;color:var(--text2)}
 .cinfo strong{color:var(--accent)}
 
-/* ── 그리드 영역 ── */
-#grid-area{padding:16px 24px 48px}
+/* ── 홈버튼 ── */
+.home-btn{padding:0 14px;font-size:1.1rem;cursor:pointer;color:#deccaa;opacity:.7;transition:opacity .15s;display:flex;align-items:center;border-right:1px solid rgba(255,255,255,.12);margin-right:4px;background:none;border-top:none;border-bottom:none;border-left:none}
+.home-btn:hover{opacity:1}
 
-/* 방향 탭 */
-.dir-tabs{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}
+/* ── 위자드 ── */
+#wizard{background:var(--panel)}
+.wz-q{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:14px;font-family:'Noto Serif KR',serif}
+.wz-opts{display:flex;gap:10px;flex-wrap:wrap}
+.wz-opt{padding:14px 28px;border-radius:10px;font-size:.88rem;cursor:pointer;border:2px solid var(--border);background:#faf8f4;color:var(--text2);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:100px}
+.wz-opt:hover{border-color:var(--accent);color:var(--accent);background:#f0f4ef}
+.wz-opt.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wo-sub{font-size:.65rem;opacity:.7}
+.wz-opt.on .wo-sub{opacity:.85}
+.wz-dan-btn{width:52px;height:52px;border-radius:9px;font-size:.88rem;cursor:pointer;border:2px solid var(--border);background:#faf8f4;color:var(--text2);transition:all .15s;display:flex;align-items:center;justify-content:center;font-weight:700;user-select:none}
+.wz-dan-btn:hover{border-color:var(--accent);color:var(--accent)}
+.wz-dan-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wz-nav{display:flex;gap:8px;margin-top:18px;align-items:center;flex-wrap:wrap}
+.wz-next{padding:10px 26px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.84rem;font-family:'Noto Sans KR',sans-serif;cursor:pointer;font-weight:500}
+.wz-next:hover{background:#2a3e28}
+.wz-next:disabled{background:#ccc;cursor:default}
+.wz-back{padding:10px 18px;background:#f0ece4;color:var(--text2);border:1px solid var(--border);border-radius:8px;font-size:.8rem;font-family:'Noto Sans KR',sans-serif;cursor:pointer}
+/* 단계 표시 */
+.wz-si{display:flex;align-items:center;gap:5px;font-size:.72rem;color:#bbb}
+.wz-si .sn{width:22px;height:22px;border-radius:50%;background:#e8e4dc;color:#aaa;display:flex;align-items:center;justify-content:center;font-size:.64rem;font-weight:700;flex-shrink:0}
+.wz-si.done{color:#7ab87a}.wz-si.done .sn{background:#7ab87a;color:#fff}
+.wz-si.cur{color:var(--accent);font-weight:600}.wz-si.cur .sn{background:var(--accent);color:#fff}
+.wz-arr{color:#ddd;font-size:.68rem;margin:0 1px}
+/* 결과 카드 */
+.sr-list{display:flex;flex-wrap:wrap;gap:8px}
+.sr-item{padding:8px 14px;border-radius:9px;font-size:.75rem;cursor:pointer;border:1.5px solid var(--mi-ib);background:var(--mi-i);color:var(--mi-it);transition:all .13s;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:72px}
+/* 검색 결과 카드 종교실 색 */
+.sr-item.is-catholic{background:#dbeafe;border-color:#93c5fd;color:#1e3a8a}
+.sr-item.is-catholic:hover{background:#bfdbfe;border-color:#3b82f6}
+.sr-item.is-christian{background:#fee2e2;border-color:#fca5a5;color:#7f1d1d}
+.sr-item.is-christian:hover{background:#fecaca;border-color:#ef4444}
+.sr-item .si-hall{font-weight:700;font-size:.76rem}
+.sr-item .si-room{font-size:.68rem}
+.sr-item .si-cnt{font-size:.62rem;background:rgba(0,0,0,.1);padding:1px 5px;border-radius:4px;margin-top:1px}
+.sr-none{font-size:.84rem;color:#b0a898;padding:10px 0}
+.sr-title{font-size:.8rem;color:var(--text2);margin-bottom:10px;line-height:1.8}
+.sr-title strong{color:var(--accent)}
+
+/* ── 모바일 그리드: 가로 스크롤 확실히 ── */
+#grid-area{padding:16px 0 48px;overflow-x:hidden}
+.room-info{margin:0 16px 10px;font-size:.78rem;color:var(--text2);padding:8px 12px;background:#f0ece4;border-radius:6px;display:flex;gap:16px;flex-wrap:wrap}
+.room-info strong{color:var(--accent)}
+.room-info .mi-num{color:var(--mi-it);font-weight:600}
+.dir-tabs{display:flex;gap:5px;margin:0 16px 10px;flex-wrap:wrap}
+.grid-panel{display:none;padding:0 16px}
+.grid-panel.active{display:block}
+.dgwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.dg{display:inline-block;min-width:max-content}
+/* 방향탭 */
 .dtab{padding:4px 14px;border-radius:12px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:#f6f3ee;color:var(--text2);transition:all .13s;white-space:nowrap}
 .dtab:hover{border-color:var(--accent);color:var(--accent)}
 .dtab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .dtab .dc{font-size:.62rem;opacity:.75;margin-left:3px}
 
-.grid-panel{display:none}
-.grid-panel.active{display:block}
-
-/* 단 그리드 */
-.room-info{font-size:.78rem;color:var(--text2);margin-bottom:10px;padding:8px 12px;background:#f0ece4;border-radius:6px;display:flex;gap:16px;flex-wrap:wrap}
-.room-info strong{color:var(--accent)}
-.room-info .mi-num{color:var(--mi-it);font-weight:600}
-
-.dgwrap{overflow-x:auto;padding-bottom:6px}
-.dg{display:inline-block}
 .clrow{display:flex;gap:3px;margin-bottom:3px}
 .cl{text-align:center;font-size:.56rem;color:var(--text2);font-weight:500;flex-shrink:0;line-height:1.4}
 .cl.bu{color:#0e5040;font-weight:600}
@@ -101,6 +139,20 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
 .cell-seq{font-size:.44rem;opacity:.7;line-height:1;margin-top:1px}
 
 .dim .cell.bun-i,.dim .cell-b.bun-b{opacity:.1}
+
+/* ── 종교실 배지 ── */
+.rel-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:8px;font-size:.62rem;font-weight:600}
+.rel-catholic{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd}
+.rel-christian{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5}
+/* lv3-tab 종교실 배경색 */
+.lv3-tab.is-catholic{background:#dbeafe;border-color:#93c5fd;color:#1e3a8a}
+.lv3-tab.is-catholic:hover{background:#bfdbfe;border-color:#3b82f6}
+.lv3-tab.is-catholic.active{background:#1d4ed8 !important;color:#fff !important;border-color:#1d4ed8}
+.lv3-tab.is-christian{background:#fee2e2;border-color:#fca5a5;color:#7f1d1d}
+.lv3-tab.is-christian:hover{background:#fecaca;border-color:#ef4444}
+.lv3-tab.is-christian.active{background:#b91c1c !important;color:#fff !important;border-color:#b91c1c}
+/* room-info 배지 */
+.room-rel{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:8px;font-size:.74rem;font-weight:600}
 
 /* 빈 상태 */
 .empty-state{text-align:center;padding:48px 20px;color:var(--text2);font-size:.84rem}
@@ -141,7 +193,10 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
 </div>
 
 <header>
-  <div class="logo">안치단 현황판 <small>분양 · 미분양 실시간 현황</small></div>
+  <div style="display:flex;align-items:center;gap:0">
+    <button class="home-btn" onclick="goHome()" title="홈으로">🏠</button>
+    <div class="logo">안치단 현황판 <small>분양 · 미분양 실시간 현황</small></div>
+  </div>
   <div class="hstats">
     <div class="hs"><div class="n" id="ht">-</div><div class="l">전체기수</div></div>
     <div class="hs"><div class="n" id="hm" style="color:#8cd88c">-</div><div class="l">미분양</div></div>
@@ -165,7 +220,15 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
   <!-- Lv2: 홀 -->
   <div class="lv2-row" id="lv2-row"></div>
   <!-- Lv3: 실 -->
-  <div class="lv3-row" id="lv3-row" style="display:none"></div>
+  <div class="lv3-row" id="lv3-row" style="display:none">
+    <div id="rel-legend" style="display:none;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+      <span style="font-size:.65rem;color:var(--text2)">종교실 안내:</span>
+      <span class="rel-badge rel-catholic">✝ 천주교실</span>
+      <span class="rel-badge rel-christian">✞ 기독교실</span>
+    </div>
+    <div class="lv3-row-label">실 선택</div>
+    <div class="lv3-tabs" id="lv3-tabs"></div>
+  </div>
 </div>
 
 <!-- 컨트롤 바 -->
@@ -189,10 +252,66 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
   <div class="cinfo" id="cinfo"></div>
 </div>
 
-<!-- 그리드 영역 -->
-<div id="grid-area">
-  <div class="empty-state"><div class="ei">🏛</div>위에서 관 → 홀 → 실을 선택하세요</div>
+<!-- 위자드 (메인화면 - 홀 선택 전) -->
+<div id="wizard" style="padding:24px 24px 32px">
+
+  <!-- 단계 표시 -->
+  <div id="wz-steps" style="display:flex;align-items:center;gap:6px;margin-bottom:20px;flex-wrap:wrap"></div>
+
+  <!-- Step 1: 종류 -->
+  <div class="wz-page" id="wp0">
+    <div class="wz-q">어떤 단을 찾으시나요?</div>
+    <div class="wz-opts">
+      <div class="wz-opt" data-v="개인단" onclick="wzPick(0,this)">개인단<span class="wo-sub">1인 안치</span></div>
+      <div class="wz-opt" data-v="부부단" onclick="wzPick(0,this)">부부단<span class="wo-sub">2인 안치</span></div>
+    </div>
+    <div class="wz-nav"><button class="wz-next" id="wn0" onclick="wzGo(1)" disabled>다음 →</button></div>
+  </div>
+
+  <!-- Step 2: 품격 -->
+  <div class="wz-page" id="wp1" style="display:none">
+    <div class="wz-q">선호하시는 품격은?</div>
+    <div class="wz-opts">
+      <div class="wz-opt" data-v="일반" onclick="wzPick(1,this)">일반실<span class="wo-sub">기본 품격</span></div>
+      <div class="wz-opt" data-v="고급" onclick="wzPick(1,this)">고급실<span class="wo-sub">프리미엄</span></div>
+      <div class="wz-opt" data-v="특별" onclick="wzPick(1,this)">특별실<span class="wo-sub">올림푸스·테라</span></div>
+    </div>
+    <div class="wz-nav">
+      <button class="wz-back" onclick="wzGo(0)">← 이전</button>
+      <button class="wz-next" id="wn1" onclick="wzGo(2)" disabled>다음 →</button>
+    </div>
+  </div>
+
+  <!-- Step 3: 단수 -->
+  <div class="wz-page" id="wp2" style="display:none">
+    <div class="wz-q">원하시는 단수를 선택하세요 <span style="font-size:.72rem;color:var(--text2)">(복수 선택 가능, 미선택시 전체)</span></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px" id="wz-dan">
+      <div class="wz-dan-btn" data-v="9" onclick="wzDan(this)">9단</div>
+      <div class="wz-dan-btn" data-v="8" onclick="wzDan(this)">8단</div>
+      <div class="wz-dan-btn" data-v="7" onclick="wzDan(this)">7단</div>
+      <div class="wz-dan-btn" data-v="6" onclick="wzDan(this)">6단</div>
+      <div class="wz-dan-btn" data-v="5" onclick="wzDan(this)">5단</div>
+      <div class="wz-dan-btn" data-v="4" onclick="wzDan(this)">4단</div>
+      <div class="wz-dan-btn" data-v="3" onclick="wzDan(this)">3단</div>
+      <div class="wz-dan-btn" data-v="2" onclick="wzDan(this)">2단</div>
+      <div class="wz-dan-btn" data-v="1" onclick="wzDan(this)">1단</div>
+    </div>
+    <div class="wz-nav">
+      <button class="wz-back" onclick="wzGo(1)">← 이전</button>
+      <button class="wz-next" onclick="wzExec()">🔍 검색</button>
+    </div>
+  </div>
+
+  <!-- Step 4: 결과 -->
+  <div class="wz-page" id="wp3" style="display:none">
+    <div id="wz-result"></div>
+    <div class="wz-nav"><button class="wz-back" onclick="wzGo(0)">← 다시 검색</button></div>
+  </div>
+
 </div>
+
+<!-- 그리드 영역 -->
+<div id="grid-area" style="display:none"></div>
 
 <div id="tip"></div>
 
@@ -228,6 +347,26 @@ const DIR_LABEL = {
   C:'중앙(C)', S:'측면(S)', W:'벽면(W)'
 };
 const SPECIAL_HALLS = new Set(['올림푸스','테라']);
+
+// ── 종교실 정의 ──
+const REL_CATHOLIC = {
+  '매화': new Set(['119','120','123','124','125']),
+  '난초': new Set(['104','117','118'])
+};
+const REL_CHRISTIAN = {
+  '난초': new Set(['106','107','108','111','112','113','115','116',
+                   '119','120','121','122','123','124','125','126','127'])
+};
+function getRel(hall, room){
+  if(REL_CATHOLIC[hall]  && REL_CATHOLIC[hall].has(room))  return 'catholic';
+  if(REL_CHRISTIAN[hall] && REL_CHRISTIAN[hall].has(room)) return 'christian';
+  return null;
+}
+function relBadge(rel){
+  if(rel==='catholic')  return '<span class="rel-badge rel-catholic">✝ 천주교</span>';
+  if(rel==='christian') return '<span class="rel-badge rel-christian">✞ 기독교</span>';
+  return '';
+}
 
 let curBld  = 'e';
 let curHall = null;
@@ -313,6 +452,8 @@ function selectHall(hall){
   curHall=hall; curRoom=null;
   document.querySelectorAll('.lv2-tab').forEach(t=>t.classList.toggle('active',t.dataset.hall===hall));
   buildLv3(hall);
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('grid-area').style.display='block';
   showEmpty('실을 선택하세요');
 }
 
@@ -322,18 +463,25 @@ function buildLv3(hall){
   if(!ST[hall]){row.style.display='none';return;}
   const rooms=Object.keys(ST[hall]).sort((a,b)=>a.localeCompare(b,void 0,{numeric:true}));
   const isSpecial=SPECIAL_HALLS.has(hall);
-  let h='<div class="lv3-row-label">실 선택</div><div class="lv3-tabs">';
+
+  // 종교실 있는지 확인 → 범례 표시 여부
+  const hasRel=rooms.some(r=>getRel(hall,r));
+  const legend=document.getElementById('rel-legend');
+  legend.style.display=hasRel?'flex':'none';
+
+  let h='';
   rooms.forEach(room=>{
     const s=roomStats(hall,room);
     const label=room+(isSpecial?'구역':'실');
-    h+=`<div class="lv3-tab" data-hall="${hall}" data-room="${room}" onclick="selectRoom('${hall}','${room}')">
+    const rel=getRel(hall,room);
+    const relCls=rel?` is-${rel}`:'';
+    h+=`<div class="lv3-tab${relCls}" data-hall="${hall}" data-room="${room}" onclick="selectRoom('${hall}','${room}')">
       <span class="rname">${label}</span>
       <span class="rbadge">미분양 ${s.mi}</span>
     </div>`;
   });
-  h+='</div>';
-  row.innerHTML=h;
-  row.style.display='block';
+  document.getElementById('lv3-tabs').innerHTML=h;
+  row.style.display='flex';
 }
 
 // ── Lv3: 실 선택 ──
@@ -362,9 +510,11 @@ function renderRoom(hall,room){
 
   const rs=roomStats(hall,room);
   const roomLabel=isSpecial?`${room} 구역`:`${room}실`;
+  const rel=getRel(hall,room);
+  const relInfo=rel?`<span class="room-rel ${rel==='catholic'?'rel-catholic':'rel-christian'}">${rel==='catholic'?'✝ 천주교실':'✞ 기독교실'}</span>`:'';
 
   let h=`<div class="room-info">
-    <span><strong>${hall} ${roomLabel}</strong></span>
+    <span><strong>${hall} ${roomLabel}</strong>${relInfo}</span>
     <span>전체 <strong>${rs.total}</strong>기수</span>
     <span class="mi-num">미분양 <strong>${rs.mi}</strong>기수</span>
     <span>분양률 <strong>${rs.total?Math.round((rs.total-rs.mi)/rs.total*100):0}%</strong></span>
@@ -557,6 +707,137 @@ document.addEventListener('mousemove',e=>{
   if(document.getElementById('tip').style.display==='block') mt(e);
 });
 function hideT(){document.getElementById('tip').style.display='none';}
+
+// ── 홈으로 ──
+// ── 홈으로 ──
+function goHome(){
+  curHall=null; curRoom=null;
+  document.querySelectorAll('.lv2-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('lv3-row').style.display='none';
+  document.getElementById('wizard').style.display='block';
+  document.getElementById('grid-area').style.display='none';
+  document.getElementById('cinfo').innerHTML='';
+  buildLv2();
+  wzReset();
+}
+
+// ── 위자드 상태 ──
+const WZ = {step:0, type:null, grade:null, dans:new Set()};
+
+function wzReset(){
+  WZ.step=0; WZ.type=null; WZ.grade=null; WZ.dans=new Set();
+  document.querySelectorAll('.wz-opt').forEach(o=>o.classList.remove('on'));
+  document.querySelectorAll('.wz-dan-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('wn0').disabled=true;
+  document.getElementById('wn1').disabled=true;
+  wzGo(0);
+}
+
+function wzGo(step){
+  WZ.step=step;
+  for(let i=0;i<4;i++) document.getElementById('wp'+i).style.display=(i===step?'block':'none');
+  // 단계 표시 갱신
+  const labels=['종류','품격','단수','결과'];
+  const el=document.getElementById('wz-steps');
+  let h='';
+  labels.forEach((l,i)=>{
+    const cls=i<step?'done':i===step?'cur':'';
+    h+=`<div class="wz-si ${cls}"><span class="sn">${i<step?'✓':(i+1)}</span>${l}</div>`;
+    if(i<3) h+='<span class="wz-arr">▶</span>';
+  });
+  el.innerHTML=h;
+}
+
+function wzPick(step, el){
+  el.parentNode.querySelectorAll('.wz-opt').forEach(o=>o.classList.remove('on'));
+  el.classList.add('on');
+  if(step===0){ WZ.type=el.dataset.v; document.getElementById('wn0').disabled=false; }
+  if(step===1){ WZ.grade=el.dataset.v; document.getElementById('wn1').disabled=false; }
+}
+
+function wzDan(el){
+  el.classList.toggle('on');
+  WZ.dans=new Set([...document.querySelectorAll('#wz-dan .wz-dan-btn.on')].map(b=>b.dataset.v));
+}
+
+function wzExec(){
+  const danAll=WZ.dans.size===0;
+  const danNums=danAll?null:new Set([...WZ.dans].map(Number));
+  const results={};
+
+  Object.entries(ST).forEach(([hall,rooms])=>{
+    Object.entries(rooms).forEach(([room,dirs])=>{
+      let cnt=0;
+      Object.entries(dirs).forEach(([dir,cols])=>{
+        Object.entries(cols).forEach(([colNum,cells])=>{
+          cells.forEach(c=>{
+            if(c[3]!==1) return;
+            if(WZ.type){ const ct=c[2]==='부'?'부부단':'개인단'; if(ct!==WZ.type) return; }
+            if(!danAll && !danNums.has(c[1])) return;
+            if(WZ.grade){
+              const isS=SPECIAL_HALLS.has(hall);
+              const key=isS?(hall+'-'+room+'-'+c[0]):(hall+'-'+room+'-'+dir+colNum+'-'+c[0]);
+              if(!(TP[key]||'').startsWith(WZ.grade)) return;
+            }
+            cnt++;
+          });
+        });
+      });
+      if(cnt>0) results[hall+'_'+room]={hall,room,count:cnt};
+    });
+  });
+
+  // 결과 페이지 표시
+  wzGo(3);
+  const el=document.getElementById('wz-result');
+  const items=Object.values(results);
+  const danLabel=danAll?'전체 단수':[...WZ.dans].sort((a,b)=>b-a).map(v=>v+'단').join(', ');
+  const typeLabel=WZ.type||'전체 종류';
+  const gradeLabel=WZ.grade?(WZ.grade+'실'):'전체 품격';
+
+  if(items.length===0){
+    el.innerHTML=`<div class="sr-title">조건: <strong>${typeLabel}</strong> · <strong>${gradeLabel}</strong> · <strong>${danLabel}</strong></div><div class="sr-none">😔 조건에 맞는 미분양 자리가 없습니다</div>`;
+    return;
+  }
+
+  const byHall={};
+  items.forEach(it=>{ if(!byHall[it.hall]) byHall[it.hall]=[]; byHall[it.hall].push(it); });
+
+  let h=`<div class="sr-title">조건: <strong>${typeLabel}</strong> · <strong>${gradeLabel}</strong> · <strong>${danLabel}</strong><br>→ <strong style="color:var(--mi-it)">${items.length}개 실</strong>에 미분양 있음 (클릭하면 이동)</div><div class="sr-list">`;
+  Object.entries(byHall).forEach(([hall,rooms])=>{
+    rooms.sort((a,b)=>a.room.localeCompare(b.room,void 0,{numeric:true}));
+    rooms.forEach(it=>{
+      const isS=SPECIAL_HALLS.has(it.hall);
+      const rel=getRel(it.hall,it.room);
+      const relCls=rel?` is-${rel}`:'';
+      h+=`<div class="sr-item${relCls}" onclick="goToRoom('${it.hall}','${it.room}')">
+        <span class="si-hall">${it.hall}</span>
+        <span class="si-room">${it.room}${isS?'구역':'실'}</span>
+        <span class="si-cnt">${it.count}자리</span>
+      </div>`;
+    });
+  });
+  h+='</div>';
+  el.innerHTML=h;
+}
+
+function goToRoom(hall,room){
+  const bld=['동관1','동관2','올림푸스','테라'].includes(hall)?'e':'w';
+  if(curBld!==bld){
+    curBld=bld;
+    document.querySelectorAll('.lv1-tab').forEach(t=>t.classList.toggle('active',t.dataset.bld===bld));
+    buildLv2();
+  }
+  curHall=hall;
+  document.querySelectorAll('.lv2-tab').forEach(t=>t.classList.toggle('active',t.dataset.hall===hall));
+  buildLv3(hall);
+  selectRoom(hall,room);
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('grid-area').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── 위자드 끝 ──
 
 // ── 엑셀 불러오기 ──
 function loadExcel(input){
