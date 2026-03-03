@@ -106,15 +106,15 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
 .sr-title strong{color:var(--accent)}
 
 /* ── 모바일 그리드: 가로 스크롤 확실히 ── */
-#grid-area{padding:16px 0 48px;overflow-x:hidden}
+#grid-area{padding:16px 0 48px}
 .room-info{margin:0 16px 10px;font-size:.78rem;color:var(--text2);padding:8px 12px;background:#f0ece4;border-radius:6px;display:flex;gap:16px;flex-wrap:wrap}
 .room-info strong{color:var(--accent)}
 .room-info .mi-num{color:var(--mi-it);font-weight:600}
 .dir-tabs{display:flex;gap:5px;margin:0 16px 10px;flex-wrap:wrap}
-.grid-panel{display:none;padding:0}
+.grid-panel{display:none}
 .grid-panel.active{display:block}
-.dgwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 16px 12px;width:100%;box-sizing:border-box}
-.dg{display:inline-block;min-width:max-content;white-space:nowrap}
+.dgwrap{overflow-x:scroll;-webkit-overflow-scrolling:touch;padding:0 16px 12px;max-width:100vw;box-sizing:border-box}
+.dg{display:table;min-width:max-content}
 /* 방향탭 */
 .dtab{padding:4px 14px;border-radius:12px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:#f6f3ee;color:var(--text2);transition:all .13s;white-space:nowrap}
 .dtab:hover{border-color:var(--accent);color:var(--accent)}
@@ -537,7 +537,13 @@ function renderRoom(hall,room){
   });
 
   const ga=document.getElementById('grid-area');
-  ga.innerHTML=h;
+  // 검색결과에서 왔으면 돌아가기 버튼 추가
+  const backBtn=fromSearch
+    ?`<div style="padding:8px 16px 0">
+        <button onclick="backToSearch()" style="padding:7px 14px;background:#f0ece4;border:1px solid var(--border);border-radius:8px;font-size:.76rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2)">← 검색 결과로</button>
+      </div>`
+    :'';
+  ga.innerHTML=backBtn+h;
   if(document.getElementById('fshow').value==='mi') ga.classList.add('dim');
   else ga.classList.remove('dim');
 
@@ -821,6 +827,9 @@ function wzExec(){
   el.innerHTML=h;
 }
 
+// ── 검색결과로 돌아가기 버튼 ──
+let fromSearch = false;
+
 function goToRoom(hall,room){
   const bld=['동관1','동관2','올림푸스','테라'].includes(hall)?'e':'w';
   if(curBld!==bld){
@@ -831,9 +840,19 @@ function goToRoom(hall,room){
   curHall=hall;
   document.querySelectorAll('.lv2-tab').forEach(t=>t.classList.toggle('active',t.dataset.hall===hall));
   buildLv3(hall);
+  fromSearch=true;
   selectRoom(hall,room);
   document.getElementById('wizard').style.display='none';
   document.getElementById('grid-area').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function backToSearch(){
+  fromSearch=false;
+  document.getElementById('grid-area').style.display='none';
+  document.getElementById('wizard').style.display='block';
+  // 결과 페이지(step3)로 바로 이동
+  wzGo(3);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
