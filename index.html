@@ -111,20 +111,20 @@ header{background:#253323;color:#deccaa;padding:12px 24px;display:flex;align-ite
 .room-info strong{color:var(--accent)}
 .room-info .mi-num{color:var(--mi-it);font-weight:600}
 .dir-tabs{display:flex;gap:5px;margin:0 16px 10px;flex-wrap:wrap}
-.grid-panel{display:none;padding:0 16px}
+.grid-panel{display:none;padding:0}
 .grid-panel.active{display:block}
-.dgwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
-.dg{display:inline-block;min-width:max-content}
+.dgwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 16px 12px;width:100%;box-sizing:border-box}
+.dg{display:inline-block;min-width:max-content;white-space:nowrap}
 /* 방향탭 */
 .dtab{padding:4px 14px;border-radius:12px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:#f6f3ee;color:var(--text2);transition:all .13s;white-space:nowrap}
 .dtab:hover{border-color:var(--accent);color:var(--accent)}
 .dtab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .dtab .dc{font-size:.62rem;opacity:.75;margin-left:3px}
 
-.clrow{display:flex;gap:3px;margin-bottom:3px}
+.clrow{display:flex;gap:3px;margin-bottom:3px;white-space:nowrap;flex-wrap:nowrap}
 .cl{text-align:center;font-size:.56rem;color:var(--text2);font-weight:500;flex-shrink:0;line-height:1.4}
 .cl.bu{color:#0e5040;font-weight:600}
-.drow{display:flex;gap:3px;margin-bottom:3px;align-items:center}
+.drow{display:flex;gap:3px;margin-bottom:3px;align-items:center;white-space:nowrap;flex-wrap:nowrap}
 .dlbl{text-align:right;padding-right:5px;font-size:.6rem;color:var(--text2);font-weight:500;flex-shrink:0}
 
 .cell,.cell-b{border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1.5px solid transparent;flex-shrink:0;transition:transform .1s;position:relative}
@@ -882,7 +882,7 @@ function loadExcel(input){
         const t    = type.includes('부부') ? '부' : '개';
         const s    = stat === '미' ? 1 : 0;
         const gr   = String(r[COL_GR]||'').trim();
-        const pr   = String(r[COL_PR]||'').trim();
+        const pr   = String(r[COL_PR]||'').trim().replace(/,/g,'');
         newTP[key] = gr+'|'+type+'|'+pr;
 
         const parts = key.split('-');
